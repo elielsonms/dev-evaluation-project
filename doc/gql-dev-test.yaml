@@ -1,0 +1,273 @@
+openapi: 3.0.0
+info:
+  description: "A Rest interface to save Contacts, a place where you can add your contacts, update them delete or filter with sorting and pagination.<br>
+  1 - Generate a token on the Oauth Token endpoint<br>
+  2 - Get the access_token field <br>
+  3 - Use that token as Bearer token on the other endpoints<br>" 
+  version: 1.0.0
+  title: "Contacts "
+  contact:
+    email: elielson.silva@wexinc.com
+tags:
+  - name: OAuth
+    description: OAuth
+  - name: Contact
+    description: Contacts
+  - name: GraphQL
+    description: Graphql Rest endpoint
+paths:
+  /oauth/token:
+    post:
+      tags:
+        - "OAuth"
+      summary: "Obtain OAuth Token"
+      description: "Obtain a jwt Token "
+      operationId: "authTOken"
+      parameters: 
+        - in: query
+          name: grant_type
+          required: true
+          schema: 
+            type: string
+        - in: query
+          name: username
+          required: true
+          schema: 
+            type: string
+        - in: query
+          name: password
+          required: true
+          schema: 
+            type: string
+        - in: query
+          name: scope
+          required: true
+          schema: 
+            type: string
+      security:
+        - basicAuth: []
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JWTToken"
+  /graphql:
+    post:
+      tags:
+        - "GraphQL"
+      summary: "Execute GraphQL queries"
+      description: "Execute GraphQL queries"
+      operationId: "graphQL"
+      security:
+        - bearerAuth: []
+      responses:
+        405:
+          description: "Invalid input"
+  /contact:
+    post:
+      tags:
+        - Contact
+      summary: Add a Contact
+      description: "Add a single contact data, storing the insertion date and the reference to the User that executed the opeartion"
+      operationId: addContact
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: "#/components/requestBodies/Contact"
+      responses:
+        "405":
+          description: Invalid input
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+  /contact/filter/:
+    post:
+      tags:
+        - Contact
+      summary: Filter Contacts
+      description: "Filter Contacts that is stored on the database, with the possibility to sort and paginate the returned data"
+      operationId: filterContact
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactFilterRequst"
+        description: Contact object
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Contact"
+        "405":
+          description: Invalid input
+  "/contact/{contactId}":
+    get:
+      tags:
+        - Contact
+      summary: Get a Contact
+      description: "Get the a single contact based on its is"
+      operationId: getContact
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: contactId
+          description: Contact id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+        "405":
+          description: Invalid input
+    post:
+      tags:
+        - Contact
+      summary: Update a Contact
+      description: "Update a single Contact, based on its ID. Also storing the updated Date and the user that executed the update operation"
+      operationId: updateContact
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: contactId
+          description: Contact id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: "#/components/requestBodies/Contact"
+      responses:
+        "405":
+          description: Invalid input
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+    delete:
+      tags:
+        - Contact
+      summary: Delete a Contact
+      description: "Delete a single contact based on its id"
+      operationId: deleteContact
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: contactId
+          description: Contact id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "405":
+          description: Invalid input
+        "200":
+          description: Success
+          content:
+            application/text:
+              schema:
+                type: boolean
+servers:
+  - url: http://localhost:8090/
+components:
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+    basicAuth:  
+      type: http
+      scheme: basic
+  requestBodies:
+    Contact:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Contact"
+      description: Contact object
+      required: true
+  schemas:
+    Contact:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        nickname:
+          type: string
+        email:
+          type: string
+        "address:":
+          type: string
+        "insertDate:":
+          type: string
+        "insertUser:":
+          type: string
+        updateDate:
+          type: string
+        updateUser:
+          type: string
+    Page:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+    Order:
+      type: object
+      properties:
+        orderBy:
+          type: string
+        orderDescending:
+          type: string
+    ContactFilterRequst:
+      type: object
+      properties:
+        filter:
+          $ref: "#/components/schemas/Contact"
+        order:
+          $ref: "#/components/schemas/Order"
+        page:
+          $ref: "#/components/schemas/Page"
+    JWTToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: string
+        scope:
+          type: string
+        jti:
+          type: string
+      

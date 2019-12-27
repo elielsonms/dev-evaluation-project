@@ -1,0 +1,73 @@
+#GQL Schema definition
+schema {
+    query: ContactQuery
+    mutation: ContactMutation
+}
+
+#Contact fetch data endpoints
+type ContactQuery {
+    findContacts(contactFilter:ContactFilter, order:OrderInput, page:PageInput):[Contact]
+    getContact(cotnactId:Int):Contact
+}
+
+#Contact data changing endpoints
+type ContactMutation {
+    insert(contact:ContactInsertInput):Contact
+    update(contact: ContactUpdateInput):Contact
+    delete(contactId: Int):Boolean
+}
+
+type Contact{
+    id:ID!
+    name:String
+    nickname:String
+    email:String
+    address:String
+    insertDate:Date
+    insertUser:User
+    updateDate:Date
+    updateUser:User
+}
+
+input ContactFilter{
+    name:String
+    email:String
+}
+
+input ContactInsertInput{
+    name:String
+    nickname:String
+    email:String
+    address:String
+}
+
+input ContactUpdateInput{
+    email:String
+    address:String
+}
+
+input PageInput{
+    size:Int! @constraint(max: 1000)
+    page:Int
+}
+
+input OrderInput{
+    orderBy: String
+    orderDescending: Boolean
+}
+
+type User{
+    username:String
+    password:String
+}
+
+scalar Date
+#Adds the ability to validate input being sent from the client.
+directive @constraint(
+    #Maximum value for an integer
+    max: Int = null
+    #Maximum string length
+    maxLength: Int = null
+    #Regex pattern that the input field must match
+    match: String = null
+) on INPUT_FIELD_DEFINITION | INPUT_OBJECT

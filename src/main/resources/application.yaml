@@ -1,0 +1,19 @@
+server:
+  port: 8090
+
+auth:
+  clients:
+    - clientId: contactClient
+      clientSecret: '{bcrypt}$2a$04$IfT/9NP86da1.PSQTsWIqexx0zFyVh5StwXkAE7uEBbDQpgQ7TVXa'
+      scopes: access
+  server:
+    grantTypes: client_credentials,password
+    jwtSigningKey: ContactJWT
+
+spring:
+    jpa:
+      open-in-view: false
+
+graphql:
+  servlet:
+    corsEnabled: false

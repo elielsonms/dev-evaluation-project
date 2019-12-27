@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)file:///C:/src/dev-evaluation-project/doc/rest_doc.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Contacts</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>Contacts</h1>
+    <div class="app-desc">A Rest interface to save Contacts, a place where you can add your contacts, update them delete or filter with sorting and pagination.<br> 1 - Generate a token on the Oauth Token endpoint<br> 2 - Get the access_token field <br> 3 - Use that token as Bearer token on the other endpoints<br></div>
+    <div class="app-desc">Contact Info: <a href="file:///C:/src/dev-evaluation-project/doc/elielson.silva@wexinc.com">elielson.silva@wexinc.com</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+    <ol>
+      <li>HTTP Basic Authentication</li>
+      <li></li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a></h4>
+  <ul>
+  <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#addContact"><code><span class="http-method">post</span> /contact</code></a></li>
+  <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#deleteContact"><code><span class="http-method">delete</span> /contact/{contactId}</code></a></li>
+  <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#filterContact"><code><span class="http-method">post</span> /contact/filter/</code></a></li>
+  <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#getContact"><code><span class="http-method">get</span> /contact/{contactId}</code></a></li>
+  <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#updateContact"><code><span class="http-method">post</span> /contact/{contactId}</code></a></li>
+  </ul>
+  <h4><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#GraphQL">GraphQL</a></h4>
+  <ul>
+  <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#graphQL"><code><span class="http-method">post</span> /graphql</code></a></li>
+  </ul>
+  <h4><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#OAuth">OAuth</a></h4>
+  <ul>
+  <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#authTOken"><code><span class="http-method">post</span> /oauth/token</code></a></li>
+  </ul>
+
+  <h1><a name="Contact">Contact</a></h1>
+  <div class="method"><a name="addContact"></a>
+    <div class="method-path">
+    <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /contact</code></pre></div>
+    <div class="method-summary">Add a Contact (<span class="nickname">addContact</span>)</div>
+    <div class="method-notes">Add a single contact data, storing the insertion date and the reference to the User that executed the opeartion</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> — Contact object </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "updateDate" : "updateDate",
+  "insertDate:" : "insertDate:",
+  "name" : "name",
+  "nickname" : "nickname",
+  "updateUser" : "updateUser",
+  "insertUser:" : "insertUser:",
+  "id" : 0,
+  "address:" : "address:",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a>
+    <h4 class="field-label">405</h4>
+    Invalid input
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#"></a>
+  </div> <!-- method -->
+  <hr>
+  <div class="method"><a name="deleteContact"></a>
+    <div class="method-path">
+    <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /contact/{contactId}</code></pre></div>
+    <div class="method-summary">Delete a Contact (<span class="nickname">deleteContact</span>)</div>
+    <div class="method-notes">Delete a single contact based on its id</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">contactId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> — Contact id format: int64</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Boolean
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>true</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/text</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Boolean">Boolean</a>
+    <h4 class="field-label">405</h4>
+    Invalid input
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#"></a>
+  </div> <!-- method -->
+  <hr>
+  <div class="method"><a name="filterContact"></a>
+    <div class="method-path">
+    <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /contact/filter/</code></pre></div>
+    <div class="method-summary">Filter Contacts (<span class="nickname">filterContact</span>)</div>
+    <div class="method-notes">Filter Contacts that is stored on the database, with the possibility to sort and paginate the returned data</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#ContactFilterRequst">ContactFilterRequst</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> — Contact object </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "updateDate" : "updateDate",
+  "insertDate:" : "insertDate:",
+  "name" : "name",
+  "nickname" : "nickname",
+  "updateUser" : "updateUser",
+  "insertUser:" : "insertUser:",
+  "id" : 0,
+  "address:" : "address:",
+  "email" : "email"
+}, {
+  "updateDate" : "updateDate",
+  "insertDate:" : "insertDate:",
+  "name" : "name",
+  "nickname" : "nickname",
+  "updateUser" : "updateUser",
+  "insertUser:" : "insertUser:",
+  "id" : 0,
+  "address:" : "address:",
+  "email" : "email"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        
+    <h4 class="field-label">405</h4>
+    Invalid input
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#"></a>
+  </div> <!-- method -->
+  <hr>
+  <div class="method"><a name="getContact"></a>
+    <div class="method-path">
+    <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /contact/{contactId}</code></pre></div>
+    <div class="method-summary">Get a Contact (<span class="nickname">getContact</span>)</div>
+    <div class="method-notes">Get the a single contact based on its is</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">contactId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> — Contact id format: int64</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "updateDate" : "updateDate",
+  "insertDate:" : "insertDate:",
+  "name" : "name",
+  "nickname" : "nickname",
+  "updateUser" : "updateUser",
+  "insertUser:" : "insertUser:",
+  "id" : 0,
+  "address:" : "address:",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a>
+    <h4 class="field-label">405</h4>
+    Invalid input
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#"></a>
+  </div> <!-- method -->
+  <hr>
+  <div class="method"><a name="updateContact"></a>
+    <div class="method-path">
+    <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /contact/{contactId}</code></pre></div>
+    <div class="method-summary">Update a Contact (<span class="nickname">updateContact</span>)</div>
+    <div class="method-notes">Update a single Contact, based on its ID. Also storing the updated Date and the user that executed the update operation</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">contactId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> — Contact id format: int64</div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> — Contact object </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "updateDate" : "updateDate",
+  "insertDate:" : "insertDate:",
+  "name" : "name",
+  "nickname" : "nickname",
+  "updateUser" : "updateUser",
+  "insertUser:" : "insertUser:",
+  "id" : 0,
+  "address:" : "address:",
+  "email" : "email"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a>
+    <h4 class="field-label">405</h4>
+    Invalid input
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#"></a>
+  </div> <!-- method -->
+  <hr>
+  <h1><a name="GraphQL">GraphQL</a></h1>
+  <div class="method"><a name="graphQL"></a>
+    <div class="method-path">
+    <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /graphql</code></pre></div>
+    <div class="method-summary">Execute GraphQL queries (<span class="nickname">graphQL</span>)</div>
+    <div class="method-notes">Execute GraphQL queries</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Invalid input
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#"></a>
+  </div> <!-- method -->
+  <hr>
+  <h1><a name="OAuth">OAuth</a></h1>
+  <div class="method"><a name="authTOken"></a>
+    <div class="method-path">
+    <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /oauth/token</code></pre></div>
+    <div class="method-summary">Obtain OAuth Token (<span class="nickname">authTOken</span>)</div>
+    <div class="method-notes">Obtain a jwt Token</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">grant_type (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> —  </div>      <div class="param">username (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> —  </div>      <div class="param">password (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> —  </div>      <div class="param">scope (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> —  </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#JWTToken">JWTToken</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "access_token" : "access_token",
+  "scope" : "scope",
+  "token_type" : "token_type",
+  "expires_in" : "expires_in",
+  "jti" : "jti"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#JWTToken">JWTToken</a>
+  </div> <!-- method -->
+  <hr>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact"><code>Contact</code></a></li>
+    <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#ContactFilterRequst"><code>ContactFilterRequst</code></a></li>
+    <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#JWTToken"><code>JWTToken</code></a></li>
+    <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Order"><code>Order</code></a></li>
+    <li><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Page"><code>Page</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Contact"><code>Contact</code></a> <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#long">Long</a></span>  format: int64</div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">nickname (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">address: (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">insertDate: (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">insertUser: (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">updateDate (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">updateUser (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ContactFilterRequst"><code>ContactFilterRequst</code></a> <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">filter (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Contact">Contact</a></span>  </div>
+<div class="param">order (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Order">Order</a></span>  </div>
+<div class="param">page (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#Page">Page</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="JWTToken"><code>JWTToken</code></a> <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">access_token (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">token_type (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">expires_in (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">scope (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">jti (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Order"><code>Order</code></a> <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">orderBy (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+<div class="param">orderDescending (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Page"><code>Page</code></a> <a class="up" href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">page (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#long">Long</a></span>  format: int64</div>
+<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="file:///C:/src/dev-evaluation-project/doc/rest_doc.html#long">Long</a></span>  format: int64</div>
+    </div>  <!-- field-items -->
+  </div>
+  
+
+</body></html>
