@@ -25,7 +25,7 @@ class DateCoercing (pattern:String?): Coercing<XMLGregorianCalendar, String> {
 
     override fun serialize(value: Any?): String {
         val valueXml : XMLGregorianCalendar = value as XMLGregorianCalendar
-        return formatter.format(valueXml.toGregorianCalendar().time);
+        return formatter.format(valueXml.toGregorianCalendar().time)
     }
 
 }
