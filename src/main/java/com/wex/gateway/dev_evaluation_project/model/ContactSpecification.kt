@@ -10,7 +10,6 @@ import javax.persistence.criteria.Root
 class ContactSpecification(var criteria: Contact?) : Specification<Contact> {
 
     override fun toPredicate(root: Root<Contact>, query: CriteriaQuery<*>, builder: CriteriaBuilder): Predicate? {
-        query.orderBy()
         return builder.or(
                 builder.like(root.get<String>("name"), "%" + this.criteria?.name + "%"),
                 builder.like(root.get<String>("nickname"), "%" + this.criteria?.nickname + "%"),
