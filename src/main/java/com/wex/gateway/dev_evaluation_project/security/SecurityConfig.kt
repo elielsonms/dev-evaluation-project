@@ -31,7 +31,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     fun corsConfigurer(): WebMvcConfigurer {
         return object : WebMvcConfigurer {
             override fun addCorsMappings(registry: CorsRegistry?) {
-                registry!!.addMapping("/**").allowedOrigins("https://editor.swagger.io");
+                registry!!.addMapping("/**").allowedOrigins("https://editor.swagger.io")
             }
         }
     }
