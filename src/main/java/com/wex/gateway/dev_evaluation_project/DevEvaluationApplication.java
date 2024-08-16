@@ -5,12 +5,9 @@ import com.wex.gateway.dev_evaluation_project.directive.constraint.ConstraintDir
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+
 
 @SpringBootApplication
-@EnableResourceServer
-@EnableAuthorizationServer
 public class DevEvaluationApplication {
     public static void main(String[] args) {
         SpringApplication.run(DevEvaluationApplication.class, args);

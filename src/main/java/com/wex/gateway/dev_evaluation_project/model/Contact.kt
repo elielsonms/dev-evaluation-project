@@ -1,9 +1,10 @@
 package com.wex.gateway.dev_evaluation_project.model
 
 import java.util.*
+import javax.persistence.Entity
 
-
-class Contact {
+@Entity
+public class Contact {
     var id: Int?=null
     var name:String?=null
     var nickname:String?=null
